@@ -1,0 +1,25 @@
+{
+  "name": "File-Upload-Fun",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node ./server/server.js",
+    "deploy": "node -e \"require('grunt').tasks(['deploy']);\""
+  },
+  "main": "./server/server.js",
+  "author": "freeman",
+  "devDependencies": {
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-uglify": "^0.9.1"
+  },
+  "dependencies": {
+    "dotenv": "^1.1.0",
+    "express": "^4.13.3",
+    "faye": "^1.1.1",
+    "grunt": "^0.4.5",
+    "grunt-s3": "^0.2.0-alpha.3",
+    "mime-types": "^2.1.4",
+    "multer": "^1.0.3",
+    "multipart": "^0.1.5",
+    "mysql": "^2.7.0"
+  }
+}
