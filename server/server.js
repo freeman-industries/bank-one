@@ -117,6 +117,7 @@ app.post("/upload", uploader, function(req,res){
   });
 });
 
-app.listen(8080);
+var port = process.env.port !== undefined ? process.env.port : 80;
+app.listen(port);
 
 console.log("Hello wrold");
