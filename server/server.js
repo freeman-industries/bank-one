@@ -73,6 +73,10 @@ var uploader = upload.array("file");
 
 var app = express(); //starts up your app
 
+console.log(process.env.PORT);
+
+app.set('port', process.env.PORT || 8080);
+
 app.use('/assets', express.static('public/assets'));
 
 app.get("/", function(req,res){
@@ -117,7 +121,4 @@ app.post("/upload", uploader, function(req,res){
   });
 });
 
-var port = process.env.port !== undefined ? process.env.port : 80;
-app.listen(port);
-
-console.log("Hello wrold");
+app.listen();
