@@ -1,3 +1,5 @@
+require('dotenv').load();
+
 var express = require("express");
 var multer = require("multer");
 var mime = require('mime-types');
@@ -5,16 +7,16 @@ var path = require('path');
 var mysql = require('mysql');
 var AWS = require('aws-sdk');
 
-AWS.config.loadFromPath('./aws_config.json');
+AWS.config.update({accessKeyId: process.env.AWS_KEY, secretAccessKey: process.env.AWS_SECRET, region: process.env.AWS_REGION});
 
 var bucket = new AWS.S3({params: {Bucket: 'freeman-files'}});
 
 var db_config = {
-  host     : 'freeman-industries-1.cfxzsglbyoxx.us-east-1.rds.amazonaws.com',
-  database : 'bank',
+  host     : process.env.DB_HOST,
+  database : process.env.DB_DB,
   multipleStatements : true,
-  user     : 'root',
-  password : 'c0mprom1sed',
+  user     : process.env.DB_USER,
+  password : process.env.DB_PASS,
 };
 
 function uploadToS3(file, destFileName, callback) {
@@ -73,10 +75,6 @@ var uploader = upload.array("file");
 
 var app = express(); //starts up your app
 
-console.log(process.env.PORT);
-
-app.set('port', process.env.PORT || 8080);
-
 app.use('/assets', express.static('public/assets'));
 
 app.get("/", function(req,res){
@@ -121,4 +119,5 @@ app.post("/upload", uploader, function(req,res){
   });
 });
 
-app.listen();
+var port = process.env.port !== undefined ? process.env.port : 8080;
+app.listen(port);
