@@ -1,0 +1,159 @@
+*{
+  -webkit-user-select:none;
+  user-select:none;
+}
+
+.circular-shadow{
+  border-radius:999px;
+  box-shadow: 0px 1px 1px rgb(249,38,144), -1px 0px 1px rgb(174,129,225), 0px -1px 1px rgb(102,217,239), 1px 0px 1px rgb(166,226,46);
+  background:#FFF;
+  font-family:Avenir;
+  font-size:14px;
+  font-weight:normal;
+  color:#888;
+  text-align:center;
+}
+
+html, body{
+  margin:0px;
+  padding:0px;
+  background:#FAFAFA;
+}
+
+header{
+  height:80px;
+  line-height:80px;
+  font-size:18px;
+  font-family:Avenir;
+  padding:0px 15px;
+  background:#FFF;
+  color:#888;
+  margin-bottom:15px;
+  border-bottom:1px solid #F0F0F0;
+  cursor:default;
+  text-align:center;
+  position:relative;
+}
+
+header .logo{
+  font-size:32px;
+
+  position:absolute;
+  top:0px;
+  left:15px;
+
+  text-transform:uppercase;
+  font-family:'ITC Avant Garde Gothic Pro', 'Avenir';
+  font-weight:900;
+}
+
+header .logo span:nth-child(1){
+  color:rgb(249,38,144);
+}
+header .logo span:nth-child(2){
+  color:rgb(174,129,225);
+}
+header .logo span:nth-child(3){
+  color:rgb(102,217,239);
+}
+header .logo span:nth-child(4){
+  color:rgb(166,226,46);
+}
+
+header .user{
+  height:40px;
+  margin-top:18px;
+  line-height:40px;
+
+  padding:0px 20px;
+
+  position:absolute;
+  top:0px;
+  right:15px;
+
+  cursor:pointer;
+}
+
+header .team-name{
+  text-align:center;
+  font-weight:bold;
+  font-size:20px;
+  display:inline-block;
+}
+
+section{
+  padding:15px 15px;
+
+  font-size:18px;
+  font-family:"Avenir", "Helvetica Neue", Helvetica, sans-serif;
+  color:#888;
+
+  cursor:default;
+}
+
+section h2{
+  margin:0px;
+  font-size:16px;
+  text-transform:uppercase;
+  font-weight:normal;
+}
+
+section h3{
+  text-align:center;
+  font-size:16px;
+  font-weight:normal;
+}
+
+section .tiles{
+  text-align:center;
+}
+
+section .tile{
+  display:inline-block;
+  margin-right:15px;
+  margin-bottom:15px;
+  background:#FFF;
+  padding:15px;
+  cursor:pointer;
+  vertical-align:middle;
+  width:200px;
+  border:1px solid #F0F0F0;
+
+  border-radius:5px;
+}
+
+section .tile .wrapper{
+  display:flex;
+  flex-direction: column;
+  width:200px;
+  height:280px;
+}
+
+section .tile .thumbnail{
+  background-color:#FAFAFA;
+  background-position:center center;
+  background-size:cover;
+  background-repeat:no-repeat;
+
+  width:200px;
+  flex:1 1;
+
+  position:relative;
+}
+
+section .tile .thumbnail .extension{
+  width: 80px;
+  height: 80px;
+  font-size: 15px;
+  line-height: 80px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background: #FFF;
+}
+
+section .tile .filename{
+  margin-top:15px;
+  font-size:16px;
+}
