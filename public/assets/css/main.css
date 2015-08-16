@@ -135,10 +135,11 @@ header .team-name{
   background-position:center center;
   background-repeat:no-repeat;
   background-size:cover;
+  box-shadow:inset 0px 99999px 0px rgba(160,255,255,0.1)
 }
 
 section{
-  padding:20px;
+  padding:30px;
 
   font-size:18px;
   font-family:"Avenir", "Helvetica Neue", Helvetica, sans-serif;
@@ -175,6 +176,10 @@ section .tile{
   border:1px solid #F0F0F0;
 
   border-radius:5px;
+}
+
+section .tile:hover{
+  border:1px solid rgb(249,38,114);
 }
 
 section .tile .wrapper{
