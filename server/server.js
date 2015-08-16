@@ -119,5 +119,13 @@ app.post("/upload", uploader, function(req,res){
   });
 });
 
-var port = process.env.port !== undefined ? process.env.port : 8080;
+var port = process.env.port !== undefined ? process.env.port : null;
+
+if(!port){
+  console.log("ERROR: No port specified. Not gonna run.");
+  return;
+}
+
+console.log("Attempting to listen on port " + port + "...");
+
 app.listen(port);

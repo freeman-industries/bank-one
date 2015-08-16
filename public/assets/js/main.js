@@ -101,7 +101,7 @@ var init = function(){
     }
   }
 
-  var url = "http://localhost:8080/files";
+  var url = "/files";
 
   xhr.addEventListener('load', load);
   xhr.open("get", url, true);
