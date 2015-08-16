@@ -36,6 +36,8 @@ function makeTile(data){
 
   var tiles = document.querySelector(".tiles");
   tiles.insertBefore(tile, tiles.querySelector(".tile"));
+
+  tile.bank_data = data;
 }
 
 
