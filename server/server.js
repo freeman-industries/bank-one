@@ -119,7 +119,7 @@ app.post("/upload", uploader, function(req,res){
   });
 });
 
-var port = process.env.port !== undefined ? process.env.port : null;
+var port = process.env.PORT !== undefined ? process.env.PORT : null;
 
 if(!port){
   console.log("ERROR: No port specified. Not gonna run.");
