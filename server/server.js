@@ -47,7 +47,7 @@ var storeFile = function(data_object){
   var connection = mysql.createConnection(db_config);
   connection.connect();
 
-  var query = "INSERT INTO `files` (`data`) VALUES (" + connection.escape(JSON.stringify(data_object)) + ");";
+  var query = "INSERT INTO `files` (`data`, `time`) VALUES (" + connection.escape(JSON.stringify(data_object)) + ", UNIX_TIMESTAMP());";
 
   connection.query(query, function(err, rows, fields) {
     if (err) throw err;

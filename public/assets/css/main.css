@@ -18,6 +18,7 @@ html, body{
   margin:0px;
   padding:0px;
   background:#FAFAFA;
+  overflow:hidden;
 }
 
 header{
@@ -28,7 +29,6 @@ header{
   padding:0px 15px;
   background:#FFF;
   color:#888;
-  margin-bottom:15px;
   border-bottom:1px solid #F0F0F0;
   cursor:default;
   text-align:center;
@@ -79,10 +79,66 @@ header .team-name{
   font-weight:bold;
   font-size:20px;
   display:inline-block;
+  color:#555;
+}
+
+.flex{
+  display:flex;
+  height:calc(100vh - 81px);
+}
+
+.menu{
+  width:240px;
+  font-family:Avenir;
+  color:#888;
+  background:#FFF;
+  border-right:1px solid #F0F0F0;
+  line-height:40px;
+}
+
+.menu h4{
+  text-transform:uppercase;
+  font-weight:normal;
+  font-size:14px;
+  margin:15px 0px;
+  margin-bottom:0px;
+  padding:0px 15px;
+  cursor:default;
+}
+
+.menu-item{
+  padding:0px 15px;
+  cursor:pointer;
+  position:relative;
+
+  margin-right:15px;
+  border-top-right-radius:50px;
+  border-bottom-right-radius:50px;
+}
+
+.menu-item:hover{
+  color:#555;
+}
+
+.menu-item.active{
+  background:rgb(249,38,114);
+  color:#FFF;
+  font-weight:bold;
+}
+
+.files-view{
+  flex:1 1;
+  height:100%;
+  overflow:hidden;
+  overflow-y:scroll;
+  background-image:url(/assets/images/files_background.jpg);
+  background-position:center center;
+  background-repeat:no-repeat;
+  background-size:cover;
 }
 
 section{
-  padding:15px 15px;
+  padding:20px;
 
   font-size:18px;
   font-family:"Avenir", "Helvetica Neue", Helvetica, sans-serif;
@@ -105,7 +161,7 @@ section h3{
 }
 
 section .tiles{
-  text-align:center;
+  text-align:left;
 }
 
 section .tile{
@@ -116,7 +172,6 @@ section .tile{
   padding:15px;
   cursor:pointer;
   vertical-align:middle;
-  width:200px;
   border:1px solid #F0F0F0;
 
   border-radius:5px;
@@ -125,8 +180,8 @@ section .tile{
 section .tile .wrapper{
   display:flex;
   flex-direction: column;
-  width:200px;
-  height:280px;
+  width:180px;
+  height:260px;
 }
 
 section .tile .thumbnail{
@@ -135,17 +190,16 @@ section .tile .thumbnail{
   background-size:cover;
   background-repeat:no-repeat;
 
-  width:200px;
   flex:1 1;
 
   position:relative;
 }
 
 section .tile .thumbnail .extension{
-  width: 80px;
-  height: 80px;
-  font-size: 15px;
-  line-height: 80px;
+  width: 60px;
+  height: 60px;
+  font-size: 14px;
+  line-height: 64px;
   position: absolute;
   top: 50%;
   left: 50%;
