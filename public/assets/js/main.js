@@ -21,8 +21,7 @@ function makeTile(data){
     img.setAttribute("style", "background-image:url(" + data.url + ");");
   } else {
     var extension = document.createElement("div");
-    extension.className = "extension circular-shadow";
-    extension.innerHTML = "FILE";
+    extension.className = "extension";
     img.appendChild(extension);
   }
 
@@ -34,10 +33,53 @@ function makeTile(data){
 
   tile.querySelector(".wrapper").appendChild(filename);
 
-  var tiles = document.querySelector(".tiles");
-  tiles.insertBefore(tile, tiles.querySelector(".tile"));
+  return tile;
+}
 
-  tile.bank_data = data;
+
+function renderTiles(filter){
+  if(filter){
+
+  }
+
+  var files_view = document.querySelector(".files-view");
+
+  var dates = {};
+
+  window._files.forEach(function(tile){
+    var date = new Date(tile.time * 1000);
+
+    date.setUTCHours(0);
+    date.setUTCMinutes(0);
+    date.setUTCSeconds(0);
+
+    var midnight = date.getTime();
+
+    if(dates[midnight] === undefined){
+      dates[midnight] = [];
+    }
+
+    dates[midnight].push(tile);
+  });
+
+  for(date in dates){
+    var section = document.createElement("section");
+
+    var date_title = new Date(parseInt(date));
+
+    section.innerHTML = "<h2>" + date_title + "</h2>";
+
+    var tiles = document.createElement("div");
+    tiles.className = "tiles";
+
+    dates[date].forEach(function(tile){
+      tiles.insertBefore(makeTile(tile), tiles.querySelector(".tile"));
+    });
+
+    section.appendChild(tiles);
+
+    files_view.insertBefore(section, files_view.querySelector("section"));
+  }
 }
 
 
@@ -59,9 +101,22 @@ function readfiles(files) {
 
     var response = JSON.parse(e.target.responseText);
 
+    console.log(response);
+
     makeTile(response);
 
   };
+
+  if(xhr.upload){
+    xhr.upload.onprogress = function(e){
+      if(e.lengthComputable){
+        // progressBar.value = (e.loaded / e.total) * 100;
+        // progressBar.textContent = progressBar.value;
+
+        console.log((e.loaded / e.total) * 100);
+      }
+    };
+  }
 
   xhr.send(formData);
 }
@@ -95,11 +150,21 @@ var init = function(){
 
   function load() {
     if(this.responseText){
+      window._files = [];
+
       var rows = JSON.parse(this.responseText);
 
       rows.forEach(function(row){
-        makeTile(JSON.parse(row.data));
+        // makeTile(JSON.parse(row.data));
+
+        row.data = JSON.parse(row.data);
+        row.data.id = row.id;
+        row.data.time = row.time;
+
+        window._files.push(row.data);
       });
+
+      renderTiles();
     }
   }
 

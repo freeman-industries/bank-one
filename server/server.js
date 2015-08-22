@@ -108,7 +108,8 @@ app.post("/upload", uploader, function(req,res){
     var response_obj = {
       filename: req.files[0].originalname,
       mimetype: req.files[0].mimetype,
-      url: data.Location
+      url: data.Location,
+      time: Math.floor(Date.now() / 1000)
     };
 
     res.send(JSON.stringify(response_obj)).end();

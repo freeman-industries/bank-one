@@ -135,11 +135,11 @@ header .team-name{
   background-position:center center;
   background-repeat:no-repeat;
   background-size:cover;
-  box-shadow:inset 0px 99999px 0px rgba(160,255,255,0.1);
+  background:#FAFAFA;
 }
 
 section{
-  padding:30px;
+  padding:0px;
 
   font-size:18px;
   font-family:"Avenir", "Helvetica Neue", Helvetica, sans-serif;
@@ -148,11 +148,18 @@ section{
   cursor:default;
 }
 
+section:first-child h2{
+  border-top:none;
+}
+
 section h2{
   margin:0px;
-  font-size:16px;
-  text-transform:uppercase;
-  font-weight:normal;
+  font-size:14px;
+  font-weight:bold;
+  padding:15px;
+  background:#FFF;
+  border-bottom:1px solid #F0F0F0;
+  border-top:1px solid #F0F0F0;
 }
 
 section h3{
@@ -163,14 +170,16 @@ section h3{
 
 section .tiles{
   text-align:left;
+  padding:20px;
+  padding-bottom:0px;
 }
 
 section .tile{
   display:inline-block;
-  margin-right:15px;
-  margin-bottom:15px;
+  margin-right:20px;
+  margin-bottom:20px;
   background:#FFF;
-  padding:15px;
+  /*padding:15px;*/
   cursor:pointer;
   vertical-align:middle;
   border:1px solid #F0F0F0;
@@ -179,18 +188,18 @@ section .tile{
 }
 
 section .tile:hover{
-  border:1px solid rgb(249,38,114);
+  /*border:1px solid rgb(249,38,114);*/
 }
 
 section .tile .wrapper{
   display:flex;
   flex-direction: column;
-  width:180px;
+  width:200px;
   height:260px;
 }
 
 section .tile .thumbnail{
-  background-color:#FAFAFA;
+  background-color:#FFF;
   background-position:center center;
   background-size:cover;
   background-repeat:no-repeat;
@@ -201,18 +210,52 @@ section .tile .thumbnail{
 }
 
 section .tile .thumbnail .extension{
-  width: 60px;
-  height: 60px;
+  width:40px;
+  height:60px;
+  background:#F0F0F0;
   font-size: 14px;
-  line-height: 64px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
-  background: #FFF;
+  text-align:center;
+}
+
+section .tile .thumbnail .extension:after{
+  content:'';
+  background:#FFF;
+  position:absolute;
+  top:-10px;
+  right:-10px;
+  width:20px;
+  height:20px;
+  transform: rotate(45deg);
+}
+
+section .tile .thumbnail .extension:before{
+  content:'';
+  background:#888;
+  position:absolute;
+  top:0px;
+  right:0px;
+  width:14px;
+  height:14px;
 }
 
 section .tile .filename{
-  margin-top:15px;
+  margin-top:0px;
+  padding:10px;
   font-size:16px;
+  background:#888;
+  color:#FFF;
+}
+
+
+#downloader{
+  position:fixed;
+  top:-100px;
+  left:-100px;
+  width:0px;
+  height:0px;
+  border:none;
 }
