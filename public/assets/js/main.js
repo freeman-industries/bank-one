@@ -1,4 +1,4 @@
-var holder = window,
+NodeList.prototype.forEach = Array.prototype.forEach;
 
 //GOTTA MAKE SURE DRAG N DROP IS SUPPORTED
 tests = {
@@ -7,6 +7,11 @@ tests = {
   formdata: !!window.FormData,
   progress: "upload" in new XMLHttpRequest
 };
+
+
+function formatDate(date_string){
+  return date_string.replace("Mon", "Monday,").replace("Tue", "Tuesday,").replace("Wed", "Wednesday,").replace("Thu", "Thursday,").replace("Fri", "Friday,").replace("Sat", "Saturday,").replace("Sun", "Sunday,").replace("Jan", "January").replace("Feb", "February").replace("Mar", "March").replace("Apr", "April").replace("Jun", "June").replace("Jul", "July").replace("Aug", "August").replace("Sep", "September").replace("Oct", "October").replace("Nov", "November").replace("Dec", "December");
+}
 
 
 function makeTile(data){
@@ -31,6 +36,11 @@ function makeTile(data){
   filename.className = "filename";
   filename.innerHTML = data.filename;
 
+  var mimetype = document.createElement("div");
+  mimetype.innerHTML = data.mimetype;
+
+  filename.appendChild(mimetype);
+
   tile.querySelector(".wrapper").appendChild(filename);
 
   return tile;
@@ -38,15 +48,34 @@ function makeTile(data){
 
 
 function renderTiles(filter){
-  if(filter){
-
-  }
-
+  var files_victim = window._files;
   var files_view = document.querySelector(".files-view");
-
   var dates = {};
 
-  window._files.forEach(function(tile){
+  //wipe the files_view
+  files_view.innerHTML = "";
+
+  if(filter !== undefined && filter !== null && filter.length > 0){
+    var temp_object = [];
+
+    files_victim.forEach(function(victim){
+      var match = false;
+
+      filter.forEach(function(mime_or_extension){
+        if(victim.mimetype.indexOf(mime_or_extension) > -1){
+          match = true;
+        }
+      });
+
+      if(match){
+        temp_object.push(victim);
+      }
+    });
+
+    files_victim = temp_object;
+  }
+
+  files_victim.forEach(function(tile){
     var date = new Date(tile.time * 1000);
 
     date.setUTCHours(0);
@@ -67,7 +96,7 @@ function renderTiles(filter){
 
     var date_title = new Date(parseInt(date));
 
-    section.innerHTML = "<h2>" + date_title + "</h2>";
+    section.innerHTML = "<h2>" + formatDate(date_title.toDateString()) + "</h2>";
 
     var tiles = document.createElement("div");
     tiles.className = "tiles";
@@ -123,7 +152,7 @@ function readfiles(files) {
 
 if (tests.dnd) {
 
-  holder.addEventListener("dragover", function(e){
+  window.addEventListener("dragover", function(e){
 
     console.log("DUDE! you're dragging!!!");
 
@@ -132,12 +161,12 @@ if (tests.dnd) {
     e.preventDefault();
   });
 
-  holder.addEventListener("dragend", function(e){
+  window.addEventListener("dragend", function(e){
     // holder.className = '';
     e.preventDefault();
   });
 
-  holder.addEventListener("drop", function(e){
+  window.addEventListener("drop", function(e){
     // holder.className = '';
     e.preventDefault();
     readfiles(e.dataTransfer.files);
@@ -165,6 +194,23 @@ var init = function(){
       });
 
       renderTiles();
+
+      var menu_items = document.querySelectorAll(".menu .menu-item");
+
+      menu_items.forEach(function(item){
+        item.addEventListener("click", function(){
+          var filter = item.getAttribute("data-filter");
+          var filter_array = (filter === null) ? [] : filter.split(",");
+
+          renderTiles(filter_array);
+
+          menu_items.forEach(function(x){
+            x.classList.remove("active");
+          });
+
+          item.classList.add("active");
+        });
+      });
     }
   }
 

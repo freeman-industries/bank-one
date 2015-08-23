@@ -183,8 +183,6 @@ section .tile{
   cursor:pointer;
   vertical-align:middle;
   border:1px solid #F0F0F0;
-
-  border-radius:5px;
 }
 
 section .tile:hover{
