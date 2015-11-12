@@ -3,6 +3,7 @@ uploads
 aws_config.json
 .elasticbeanstalk
 npm-debug.log
+.env
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
